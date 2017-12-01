@@ -21,12 +21,14 @@ class matchbox::install {
   }
 
   case $::osfamily {
-    
-
-
-
-
+    'Debian','RedHat':{
+      notice('running on a Debian or Redhat Platform')
     }
-    default: {}
+    'CoreOS':{
+      notice('Matchbox on CoreOS')
+    }
+    default: {
+      warning('This may or may not work on this system')
+    }
   }
 }

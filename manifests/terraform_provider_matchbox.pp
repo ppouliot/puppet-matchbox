@@ -13,31 +13,31 @@ class matchbox::terraform_provider_matchbox {
   staging::deploy{"terraform_${matchbox::terraform_version}_linux_amd64.zip":
     source  => "https://releases.hashicorp.com/terraform/${matchbox::terraform_version}/terraform_${matchbox::terraform_version}_linux_amd64.zip",
     target  => '/usr/local/bin',
-    creates => '/usr/local/bin/terraform'
-  } ->
+    creates => '/usr/local/bin/terraform',
+  }
   # install the terraform matchbox provider
-  exec{'go-get-terraform-provider-matchbox':
+->exec{'go-get-terraform-provider-matchbox':
     environment => [
     'GOPATH=/opt/go',
     'GOBIN=/usr/local/go/bin',
     ],
-    command   => '/usr/local/go/bin/go get github.com/coreos/terraform-provider-matchbox',
-    creates   => '/usr/local/bin/terraform-provider-matchbox',
-    cwd     => '/usr/local/go',
+    command     => '/usr/local/go/bin/go get github.com/coreos/terraform-provider-matchbox',
+    creates     => '/usr/local/bin/terraform-provider-matchbox',
+    cwd         => '/usr/local/go',
     logoutput   => true,
-    timeout   => '0',
-    user    => 'root',
-  } ->
+    timeout     => '0',
+    user        => 'root',
+  }
   # Add a .terraformrc for matchbox in /root
-  file{ [
+->file{ [
     '/root/.terraformrc',
     '/etc/skel/.terraformrc',
   ]:
-    ensure => file,
-    content => '# Puppet Managed: ${::module_name}
+    ensure  => file,
+    content => "# Puppet Managed: ${::module_name}
 providers {
-  matchbox = "/usr/local/go/bin/terraform-provider-matchbox"
+  matchbox = \"/usr/local/go/bin/terraform-provider-matchbox\"
 }
-',
-  } 
+",
+  }
 }

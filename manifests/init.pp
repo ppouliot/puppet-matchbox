@@ -57,15 +57,14 @@ class matchbox (
   $enable             = undef,
   $go_version         = '1.9.2',
   $terraform_version  = '0.11.0',
-  $log_level          = undef
-  $service_name = $service_name_default
-  $service_state      = running
-  $service_enable     = true
-  $manage_service     = true
+  $log_level          = unde,
+  $service_state      = running,
+  $service_enable     = true,
+  $manage_service     = true,
 ){
   validate_string($version)
-  validate_string($go_version)
-  validate_string($terraformversion)
+  validate_string($::go_version)
+  validate_string($::terraformversion)
   validate_string($version)
   validate_bool($manage_service)
   validate_re($::osfamily, '^(Debian|RedHat|CoreOS)$',
@@ -128,10 +127,10 @@ class matchbox (
     'CoreOS':{}
     default:{}
   }
-  
+
 
   include stdlib
-  if $matchbox_enable == true {
+  if $::matchbox_enable == true {
     class{'::matchbox':}
     contain matchbox
   }

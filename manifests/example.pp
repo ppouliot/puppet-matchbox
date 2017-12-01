@@ -7,6 +7,7 @@
 # @example
 #   matchbox::example { 'namevar': }
 define matchbox::example(
+  $coreos_version = $name
 ) {
       # Begin Examples
       file{[
@@ -20,11 +21,11 @@ define matchbox::example(
         "/home/matchbox/examples/${coreos_version}/groups/bootkube",
         "/home/matchbox/examples/${coreos_version}/groups/bootkube-install",
         "/home/matchbox/examples/${coreos_version}/profiles",
-#        "/home/matchbox/examples/${coreos_version}/ignition",
-      ]:
-        ensure  => directory,
-        owner   => 'matchbox',
-        group   => 'matchbox',
+#       "/home/matchbox/examples/${coreos_version}/ignition",
+        ]:
+        ensure => directory,
+        owner  => 'matchbox',
+        group  => 'matchbox',
       }
       file{ "/home/matchbox/examples/${coreos_version}/ignition":
         ensure  => directory,
@@ -256,16 +257,11 @@ define matchbox::example(
 #        group   => 'matchbox',
 #        content => template('quartermaster/matchbox/profiles.etcd3-gateway.json.erb'),
 #      }
-
-     # profiles install-channel-reboot.json
 #      file{ "/home/matchbox/profiles/install-${release}-reboot.json":
 #        ensure  => file,
 #        owner   => 'matchbox',
 #        group   => 'matchbox',
 #        content => template('quartermaster/matchbox/profiles.install-channel-reboot.json.erb'),
 #      }
-
-    }
-  }
 
 }

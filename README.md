@@ -1,15 +1,6 @@
 
 # matchbox
-
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://docs.puppet.com/pdk/1.0/pdk_generating_modules.html#module-contents .
-
-Below you'll find the default README template ready for some content.
-
-
-
-
-
-
+matchbox is a service that matches bare-metal machines (based on labels like MAC, UUID, etc.) to profiles that PXE boot and provision Container Linux clusters. Profiles specify the kernel/initrd, kernel arguments, iPXE config, GRUB config, Container Linux Config, or other configs a machine should use. Matchbox can be installed as a binary, RPM, container image, or deployed on a Kubernetes cluster and it provides an authenticated gRPC API for clients like Terraform.
 
 #### Table of Contents
 

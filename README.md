@@ -2,6 +2,8 @@
 # matchbox
 matchbox is a service that matches bare-metal machines (based on labels like MAC, UUID, etc.) to profiles that PXE boot and provision Container Linux clusters. Profiles specify the kernel/initrd, kernel arguments, iPXE config, GRUB config, Container Linux Config, or other configs a machine should use. Matchbox can be installed as a binary, RPM, container image, or deployed on a Kubernetes cluster and it provides an authenticated gRPC API for clients like Terraform.
 
+This puppet module deploys Matchbox, Terraform and the Terraform-Matchox-Provider directly from the Internet.
+
 #### Table of Contents
 
 1. [Description](#description)

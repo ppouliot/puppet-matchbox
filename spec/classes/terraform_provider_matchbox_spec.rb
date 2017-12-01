@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'matchbox::terraform_matchbox_provider' do
+describe 'matchbox::terraform_provider_matchbox' do
   on_supported_os(facterversion: '2.4').each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
